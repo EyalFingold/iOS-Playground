@@ -9,6 +9,7 @@
 #import "FirstViewController.h"
 
 @interface FirstViewController ()
+@property (weak, nonatomic) IBOutlet UILabel *FirstViewMainLabel;
 
 @end
 
@@ -16,7 +17,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    
+    [[self FirstViewMainLabel] setText:@"test"];
+     // Do any additional setup after loading the view, typically from a nib.
 }
 
 - (void)didReceiveMemoryWarning {
@@ -24,4 +27,10 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)btnClicked:(id)sender {
+    if ([sender isKindOfClass:[UIButton class]]){
+     [[self FirstViewMainLabel] setText:@"btn Clicked"];
+        [(UIButton*)sender setTitle:@"clicked" forState:(UIControlStateNormal)];
+    }
+}
 @end

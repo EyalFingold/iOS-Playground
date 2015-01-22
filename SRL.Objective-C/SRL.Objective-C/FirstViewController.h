@@ -10,6 +10,8 @@
 
 @interface FirstViewController : UIViewController
 
+- (IBAction)btnClicked:(id)sender;
+//- (IBAction)btnClicked2:(id)sender;
 
 @end
 
