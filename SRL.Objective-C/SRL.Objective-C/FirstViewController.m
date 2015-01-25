@@ -20,7 +20,24 @@
     
     [[self FirstViewMainLabel] setText:@"test"];
      // Do any additional setup after loading the view, typically from a nib.
+   
+    UIButton *newButton = [[UIButton alloc] initWithFrame:CGRectMake(30, 40, 60, 30)];
+    [newButton setTitle:@"newbtn" forState:UIControlStateNormal];
+    [newButton setBackgroundColor:[UIColor redColor]];
+    [newButton addTarget:self
+                  action:@selector(myButtonTapped:)
+        forControlEvents:UIControlEventTouchUpInside
+     ];
+    [[self view] addSubview:newButton];
+     
 }
+
+- (void) myButtonTapped:(UIButton*)btn
+{
+    [btn setBackgroundColor:[UIColor blueColor]];
+    [[self view] setBackgroundColor:[UIColor greenColor]];
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
