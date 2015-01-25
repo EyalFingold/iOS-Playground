@@ -137,7 +137,7 @@
         <scene sceneID="OvZ-3T-ebu">
             <objects>
                 <navigationController id="U3y-NR-iiB" userLabel="Load Tests" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Load Tests" id="hs0-XO-ltp"/>
+                    <tabBarItem key="tabBarItem" title="Load Tests" image="testing" id="hs0-XO-ltp"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="rov-Mw-vGc">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -150,7 +150,7 @@
             </objects>
             <point key="canvasLocation" x="289" y="206"/>
         </scene>
-        <!--Community posts-->
+        <!--Comuunity Posts-->
         <scene sceneID="G2m-hW-4WU">
             <objects>
                 <viewController id="4Pb-3b-U7G" customClass="CommunityPostsViewController" sceneMemberID="viewController">
@@ -163,13 +163,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Community posts" id="wqd-Mq-k67"/>
+                    <tabBarItem key="tabBarItem" title="Comuunity Posts" image="linkedin" id="wqd-Mq-k67"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f2h-Hc-ZaV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="982" y="206"/>
         </scene>
-        <!--More-->
+        <!--More View Controller-->
         <scene sceneID="Cze-ZY-gef">
             <objects>
                 <viewController id="7N7-ug-s5Y" customClass="MoreViewController" sceneMemberID="viewController">
@@ -182,7 +182,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="More" id="N77-1p-WcN"/>
+                    <tabBarItem key="tabBarItem" systemItem="more" id="N77-1p-WcN"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3xH-V8-PWE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -239,8 +239,8 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="9pv-A4-QxB" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
                         <segue destination="U3y-NR-iiB" kind="relationship" relationship="viewControllers" id="u1D-wL-aVb"/>
+                        <segue destination="9pv-A4-QxB" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
                         <segue destination="8rJ-Kc-sve" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
                         <segue destination="4Pb-3b-U7G" kind="relationship" relationship="viewControllers" id="JTf-fw-Fyj"/>
                         <segue destination="7N7-ug-s5Y" kind="relationship" relationship="viewControllers" id="v9s-2S-YeI"/>
@@ -253,6 +253,8 @@
     </scenes>
     <resources>
         <image name="first" width="30" height="30"/>
+        <image name="linkedin" width="24" height="24"/>
         <image name="second" width="30" height="30"/>
+        <image name="testing" width="25" height="25"/>
     </resources>
 </document>

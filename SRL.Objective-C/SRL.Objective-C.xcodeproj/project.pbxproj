@@ -55,6 +55,7 @@
 		D25B4D501A74E987004CC49A /* LoadTestsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadTestsTableViewController.m; sourceTree = "<group>"; };
 		D25B4D871A74EAB1004CC49A /* DetailLoadTestViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailLoadTestViewController.h; sourceTree = "<group>"; };
 		D25B4D881A74EABD004CC49A /* DetailLoadTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailLoadTestViewController.m; sourceTree = "<group>"; };
+		D25B4D8A1A751D7F004CC49A /* LoadTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoadTest.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +97,7 @@
 		D25B4CE71A70F19C004CC49A /* SRL.Objective-C */ = {
 			isa = PBXGroup;
 			children = (
+				D25B4D8B1A751D86004CC49A /* Models */,
 				D25B4D4E1A74DB8B004CC49A /* ViewControllers */,
 				D25B4CEC1A70F19C004CC49A /* AppDelegate.h */,
 				D25B4CED1A70F19C004CC49A /* AppDelegate.m */,
@@ -150,6 +152,14 @@
 				D25B4D881A74EABD004CC49A /* DetailLoadTestViewController.m */,
 			);
 			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		D25B4D8B1A751D86004CC49A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D25B4D8A1A751D7F004CC49A /* LoadTest.h */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
