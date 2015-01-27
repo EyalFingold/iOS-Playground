@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LoadTestsModel.h"
 
 @interface LoadTestsTableViewController : UITableViewController
 
+@property (nonatomic, retain) LoadTestsModel *theDataModel;
+@property Boolean isUpdatingData;
 
 @end
 

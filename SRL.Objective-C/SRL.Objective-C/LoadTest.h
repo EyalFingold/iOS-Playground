@@ -7,20 +7,20 @@
 //
 #import <Foundation/Foundation.h>
 
-@interface LoadTest:NSObject
+@interface LoadTestModel:NSObject
 
 -(id)initWithDict:(NSNumber *)loadTestID WithName:(NSString *)name WithDescription:(NSString *)description ;
 -(id)initWithDict:(NSNumber *)loadTestID WithName:(NSString *)name;
 
 
-@property NSNumber *LoadTestID;
-@property NSString *Name;
-@property NSString *Description;
-@property NSDate *last_run_date;
-@property NSDate *modified_date;
-@property NSDate *create_date;
-@property NSString *create_by;
-@property NSString *modified_by;
+@property ( nonatomic) NSNumber *LoadTestID;
+@property ( nonatomic) NSString *Name;
+@property ( nonatomic) NSString *Description;
+@property ( nonatomic) NSDate *last_run_date;
+@property ( nonatomic) NSDate *modified_date;
+@property ( nonatomic) NSDate *create_date;
+@property ( nonatomic) NSString *create_by;
+@property ( nonatomic) NSString *modified_by;
 
 @end
 

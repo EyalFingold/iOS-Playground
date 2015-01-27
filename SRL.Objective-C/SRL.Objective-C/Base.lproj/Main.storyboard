@@ -90,6 +90,10 @@
                             </tableViewCell>
                         </prototypes>
                         <sections/>
+                        <connections>
+                            <outlet property="dataSource" destination="Mus-8N-7gW" id="NVg-bB-3oO"/>
+                            <outlet property="delegate" destination="Mus-8N-7gW" id="Rp0-1N-VoZ"/>
+                        </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Load Tests" id="bLm-TB-F6N"/>
                 </tableViewController>

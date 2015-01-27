@@ -9,11 +9,11 @@
 #import "LoadTest.h"
 #import <Foundation/Foundation.h>
 
-@interface LoadTest ()
+@interface LoadTestModel ()
 
 @end
 
-@implementation LoadTest
+@implementation LoadTestModel
 
 -(id)initWithDict:(NSNumber *)loadTestID WithName:(NSString *)name WithDescription:(NSString *)description {
 
@@ -26,8 +26,6 @@
         }
         return self;
     }
-
-
 
 -(id)initWithDict:(NSNumber *)loadTestID WithName:(NSString *)name {
 
