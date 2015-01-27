@@ -19,6 +19,7 @@
 		D25B4D4D1A74DB7A004CC49A /* MoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D25B4D4C1A74DB7A004CC49A /* MoreViewController.m */; };
 		D25B4D511A74E987004CC49A /* LoadTestsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D25B4D501A74E987004CC49A /* LoadTestsTableViewController.m */; };
 		D25B4D891A74EABD004CC49A /* DetailLoadTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D25B4D881A74EABD004CC49A /* DetailLoadTestViewController.m */; };
+		D25B4D8D1A766D16004CC49A /* LoadTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D25B4D8C1A766D16004CC49A /* LoadTest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,7 @@
 		D25B4D871A74EAB1004CC49A /* DetailLoadTestViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailLoadTestViewController.h; sourceTree = "<group>"; };
 		D25B4D881A74EABD004CC49A /* DetailLoadTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailLoadTestViewController.m; sourceTree = "<group>"; };
 		D25B4D8A1A751D7F004CC49A /* LoadTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoadTest.h; sourceTree = "<group>"; };
+		D25B4D8C1A766D16004CC49A /* LoadTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadTest.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +160,7 @@
 			isa = PBXGroup;
 			children = (
 				D25B4D8A1A751D7F004CC49A /* LoadTest.h */,
+				D25B4D8C1A766D16004CC49A /* LoadTest.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -263,6 +266,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D25B4D4A1A74DACC004CC49A /* CommunityPostsViewController.m in Sources */,
+				D25B4D8D1A766D16004CC49A /* LoadTest.m in Sources */,
 				D25B4CF41A70F19C004CC49A /* SecondViewController.m in Sources */,
 				D25B4D511A74E987004CC49A /* LoadTestsTableViewController.m in Sources */,
 				D25B4D891A74EABD004CC49A /* DetailLoadTestViewController.m in Sources */,
