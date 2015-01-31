@@ -11,8 +11,7 @@
 
 @interface LoadTestsTableViewController : UITableViewController
 
-@property (nonatomic, retain) LoadTestsModel *theDataModel;
-@property Boolean isUpdatingData;
+@property (retain, nonatomic) LoadTestsModel *theDataModel;
 
 @end
 

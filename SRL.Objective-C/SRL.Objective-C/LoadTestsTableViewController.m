@@ -5,10 +5,17 @@
 //  Created by Eyal Fingold on 1/25/15.
 //  Copyright (c) 2015 Eyal Fingold. All rights reserved.
 //
-
+#import <UIKit/UIKit.h>
 #import "LoadTestsTableViewController.h"
 #import "DetailLoadTestViewController.h"
 #import "LoadTestsModel.h"
+#import "DetailLoadTestViewController.h"
+#import <Foundation/Foundation.h>
+
+#define MAINLABEL_TAG 1
+#define SECONDLABEL_TAG 2
+#define PHOTO_TAG 3
+
 
 @interface LoadTestsTableViewController ()
 //theDataModel
@@ -18,53 +25,40 @@
 @implementation LoadTestsTableViewController
 
 
-
 - (void)awakeFromNib {
     [super awakeFromNib];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.isUpdatingData = false;
-    // Do any additional setup after loading the view, typically from a nib.
-    /*
-    self.navigationItem.leftBarButtonItem = self.editButtonItem;
-    
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
-    self.navigationItem.rightBarButtonItem = addButton;
-     */
-    
+
     // Registering notification message RefreshLoadTests and hooking into refreshTableWithNotification, so to be able to get outside notifications for data update.
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshTableWithNotification:) name:@"RefreshLoadTests" object:nil];
-    
- 
     
     self.theDataModel = [[LoadTestsModel alloc] init];
     
     UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
     refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Pull to Refresh"];
-    [refresh addTarget:self
-        action:@selector(refreshView:)
-        forControlEvents:UIControlEventValueChanged];
+    [refresh addTarget:self action:@selector(refreshView:)  forControlEvents:UIControlEventValueChanged];
     self.refreshControl = refresh;
+    
     [[self theDataModel] updateData];
-
 }
 
 - (void)refreshTableWithNotification:(NSNotification *)notification
 {
-    [self.tableView reloadData];
+    
+    if([NSThread isMainThread]){
+        [self.tableView reloadData];
+    }else{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+
+        });    }
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-
 
 //updating data from server
--(void)refreshView:(UIRefreshControl *)refresh {
+- (void)refreshView:(UIRefreshControl *)refresh {
 
     refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Refreshing data..."];
 
@@ -80,6 +74,19 @@
    
 }
 
+
+#pragma mark - Segues
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([[segue identifier] isEqualToString:@"showDetail"]) {
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+         NSDictionary *aDict = self.theDataModel.LoadTests[indexPath.row];
+        [[segue destinationViewController] setDetailItem:aDict];
+    }
+}
+
+#pragma mark - Table View
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
@@ -89,26 +96,88 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    /*UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     
     NSDictionary *object = self.theDataModel.LoadTests[indexPath.row];
     cell.textLabel.text = object[@"name"];
     [cell setAccessoryType:(UITableViewCellAccessoryDisclosureIndicator)];
     return cell;
-}
+    */
+    static NSString *CellIdentifier = @"Cell";
+    UILabel *textLabel, *secondLabel;
+    UIImageView *photo;
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    if (cell == nil) {
+        
+        /*DetailLoadTestViewController *nextViewController = [DetailLoadTestViewController alloc];
 
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return NO;
-}
+        UIStoryboardSegue *segue = [[UIStoryboardSegue alloc] initWithIdentifier:@"showDetail" source:self destination: nextViewController;
+        */
+        
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];        
 
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        //[self.objects removeObjectAtIndex:indexPath.row];
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        
+        textLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, 270.0, 43.0)];
+        textLabel.tag = MAINLABEL_TAG;
+        textLabel.font = [UIFont systemFontOfSize:14.0];
+        textLabel.textColor = [UIColor blackColor];
+        [cell.contentView addSubview:textLabel];
+        
+        secondLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 20.0, 220.0, 25.0)];
+        secondLabel.tag = SECONDLABEL_TAG;
+        secondLabel.font = [UIFont systemFontOfSize:12.0];
+        secondLabel.textColor = [UIColor darkGrayColor];
+        [cell.contentView addSubview:secondLabel];
+        
+        photo = [[UIImageView alloc] initWithFrame:CGRectMake(250, 0.0, 45, 45.0)];
+        photo.tag = PHOTO_TAG;
+        photo.translatesAutoresizingMaskIntoConstraints = NO;
+        [cell.contentView addSubview:photo];
+        
+        
+        
+    } else {
+        textLabel = (UILabel *)[cell.contentView viewWithTag:MAINLABEL_TAG];
+        secondLabel = (UILabel *)[cell.contentView viewWithTag:SECONDLABEL_TAG];
+        photo = (UIImageView *)[cell.contentView viewWithTag:PHOTO_TAG];
     }
+    NSDictionary *aDict = self.theDataModel.LoadTests[indexPath.row];
+    textLabel.text = [aDict objectForKey:@"name"];
+    
+    
+    double unixTimeStamp =[[[aDict objectForKey:@"modified_date"] substringToIndex:10] doubleValue];
+   
+    NSTimeInterval _interval=(NSTimeInterval)unixTimeStamp;
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:_interval];
+    NSDateFormatter *formatter= [[NSDateFormatter alloc] init];
+    [formatter setLocale:[NSLocale currentLocale]];
+    formatter.dateStyle = NSDateFormatterMediumStyle;
+    formatter.timeStyle = NSDateFormatterMediumStyle;
+    NSString *dateString = [formatter stringFromDate:date];
+    
+    
+     secondLabel.text =dateString;
+//    cell.textLabel.text = [aDict objectForKey:@"name"];
+    //NSString *imagePath = [[NSBundle mainBundle] pathForResource:[aDict objectForKey:@"ui_status"] ofType:@"png"];
+    //ֿUIImage *theImage = [UIImage imageWithContentsOfFile:imagePath];
+    //SYSTEM_ERROR
+    //PASSED - ok
+    //NEW - ok
+    //FAILED - ok
+    //RUNNING (blue new)
+    //ABORTED
+    //STOPPED - ok
+    //INITIALIZING
+    NSString* imageName = [aDict objectForKey:@"ui_status"];
+    photo.image = [UIImage imageNamed: imageName];
+;
+    
+    return cell;
+
+    
+    
 }
+
 
 @end
